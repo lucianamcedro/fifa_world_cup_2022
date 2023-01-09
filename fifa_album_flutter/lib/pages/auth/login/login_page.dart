@@ -2,6 +2,7 @@ import 'package:fifa_album_flutter/core/ui/styles/button_styles.dart';
 import 'package:fifa_album_flutter/core/ui/styles/colors_app.dart';
 import 'package:fifa_album_flutter/core/ui/styles/text_styles.dart';
 import 'package:fifa_album_flutter/core/ui/widgets/button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,9 +21,11 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/background_login.png'),
-                  fit: BoxFit.cover)),
+            image: DecorationImage(
+              image: AssetImage('assets/images/background_login.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: CustomScrollView(
             slivers: [
               SliverList(
@@ -30,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                   [
                     SizedBox(
                       height: MediaQuery.of(context).size.height *
-                          (MediaQuery.of(context).size.width > 450 ? .30 : .25),
+                          (MediaQuery.of(context).size.width > 350 ? .30 : .25),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20.0),
@@ -49,6 +52,15 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        label: Text('Senha'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 6.0),
                       child: Text(
@@ -62,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 25,
                     ),
                     Button(
+                        onPressed: () {},
                         width: MediaQuery.of(context).size.width * .9,
                         style: context.buttonStyle.yellowButton,
                         labelStyle: context
@@ -78,13 +91,19 @@ class _LoginPageState extends State<LoginPage> {
                     Text.rich(
                       style: context.textstyles.textSecondaryFontMedium
                           .copyWith(color: Colors.white),
-                      TextSpan(text: 'Não possui uma conta? ', children: [
-                        TextSpan(
-                          text: 'Cadastra-se',
-                          style: context.textstyles.textPrimaryFontMedium
-                              .copyWith(color: context.colors.yellow),
-                        ),
-                      ]),
+                      TextSpan(
+                        text: 'Não possui uma conta? ',
+                        children: [
+                          TextSpan(
+                            text: 'Cadastre-se',
+                            style: context.textstyles.textSecondaryFontMedium
+                                .copyWith(color: context.colors.yellow),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.of(context)
+                                  .pushNamed('/auth/register'),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
