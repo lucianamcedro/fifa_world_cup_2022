@@ -1,20 +1,25 @@
-import 'package:fifa_album_flutter/core/ui/helpers/loader.dart';
-import 'package:fifa_album_flutter/core/ui/helpers/messages.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:fifa_album_flutter/core/ui/styles/button_styles.dart';
 import 'package:fifa_album_flutter/core/ui/styles/colors_app.dart';
 import 'package:fifa_album_flutter/core/ui/styles/text_styles.dart';
 import 'package:fifa_album_flutter/core/ui/widgets/button.dart';
+import 'package:fifa_album_flutter/pages/splash/presenter/splash_presenter.dart';
+import 'package:fifa_album_flutter/pages/splash/view/splash_view_impl.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+  final SplashPresenter presenter;
+  const SplashPage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with Loader<SplashPage>, Messages<SplashPage> {
+class _SplashPageState extends SplashViewImpl {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.height;
@@ -44,7 +49,9 @@ class _SplashPageState extends State<SplashPage>
                 padding: EdgeInsets.only(bottom: size * .19),
                 child: Button(
                   width: width * .9,
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.presenter.checkLogin();
+                  },
                   style: context.buttonStyle.yellowButton,
                   label: 'Acessar',
                   labelStyle:
