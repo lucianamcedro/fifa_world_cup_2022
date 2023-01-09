@@ -1,4 +1,4 @@
-import 'package:fifa_album_flutter/core/theme/theme_config.dart';
+import 'package:fifa_album_flutter/core/ui/theme/theme_config.dart';
 import 'package:fifa_album_flutter/pages/pages.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
-import 'package:fifa_album_flutter/core/styles/colors_app.dart';
-import 'package:fifa_album_flutter/core/styles/text_styles.dart';
+import 'package:fifa_album_flutter/core/ui/styles/colors_app.dart';
+import 'package:fifa_album_flutter/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ThemeConfig {
