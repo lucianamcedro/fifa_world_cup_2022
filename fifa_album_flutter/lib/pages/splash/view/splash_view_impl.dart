@@ -19,7 +19,8 @@ abstract class SplashViewImpl extends State<SplashPage>
     if (isLogged) {
       Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
     } else {
-      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/auth/login', (route) => false);
     }
   }
 }
