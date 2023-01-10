@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class RegisterUserModel {
   final String name;
   final String email;
   final String password;
-  final String confirmPassword;
+  final String passwordConfirmation;
+
   RegisterUserModel({
     required this.name,
     required this.email,
     required this.password,
-    required this.confirmPassword,
+    required this.passwordConfirmation,
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'name': name,
       'email': email,
       'password': password,
-      'password_confirmation': confirmPassword,
+      'password_confirmation': passwordConfirmation,
     };
   }
 
@@ -27,12 +27,12 @@ class RegisterUserModel {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       password: map['password'] ?? '',
-      confirmPassword: map['password_confirmation'] ?? '',
+      passwordConfirmation: map['password_confirmation'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory RegisterUserModel.fromJson(String source) =>
-      RegisterUserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+      RegisterUserModel.fromMap(json.decode(source));
 }

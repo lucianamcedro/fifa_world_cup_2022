@@ -7,8 +7,18 @@ class CustomDio extends DioForNative {
       : super(BaseOptions(
             baseUrl: Env.i['backend_base_url'] ?? '',
             connectTimeout: 5000,
-            receiveTimeout: 60000)) {
-    interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
+            receiveTimeout: 60000,
+            contentType: 'application/json',
+            followRedirects: false,
+            validateStatus: (status) => true,
+            headers: {
+              "Accept": "application/json",
+            })) {
+    interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+      requestHeader: true,
+    ));
   }
 
   CustomDio auth() {
