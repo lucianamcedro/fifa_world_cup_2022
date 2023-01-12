@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -13,15 +15,15 @@ class AuthRepositoryImp implements AuthRepository {
   AuthRepositoryImp({required this.dio});
 
   @override
-  Future<void> login({required String email, required String password}) async {
+  Future<String> login(
+      {required String email, required String password}) async {
     try {
       final result = await dio.post('/api/auth', data: {
         'email': email,
         'password': password,
       });
-
-      //final accessToken = result.data['access_token'];
-      final accessToken = result.data;
+      // final accessToken = result.data;
+      final accessToken = result.data['access_token'].toString();
       if (accessToken == null) {
         throw UnauthorizedException();
       }
@@ -31,9 +33,8 @@ class AuthRepositoryImp implements AuthRepository {
       log('Erro ao realizar login', error: e, stackTrace: s);
       if (e.response?.statusCode == 401) {
         throw UnauthorizedException();
-      } else {
-        throw RepositoryException(message: 'Erro ao realizar login');
       }
+      throw RepositoryException(message: 'Erro ao realizar login');
     }
   }
 

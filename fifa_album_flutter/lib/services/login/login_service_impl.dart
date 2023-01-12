@@ -7,15 +7,16 @@ import './login_service.dart';
 class LoginServiceImpl implements LoginService {
   final AuthRepository authRepository;
 
-  LoginServiceImpl({required this.authRepository});
+  LoginServiceImpl({
+    required this.authRepository,
+  });
 
   @override
-  Future execute({required String email, required String password}) async {
+  Future<void> execute(
+      {required String email, required String password}) async {
     final accessToken =
         await authRepository.login(email: email, password: password);
-
     final sp = await SharedPreferences.getInstance();
-
     sp.setString('accessToken', accessToken);
   }
 }
