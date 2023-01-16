@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:fifa_album_flutter/core/ui/global/global_context.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthInterceptors extends Interceptor {
@@ -14,7 +16,11 @@ class AuthInterceptors extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    // TODO: implement onError
+    if (err.response?.statusCode == 401) {
+      Injector.get<GlobalContext>().loginExpire();
+    } else {
+      handler.next(err);
+    }
     super.onError(err, handler);
   }
 }

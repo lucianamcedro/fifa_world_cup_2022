@@ -4,5 +4,5 @@ import 'package:flutter/material.dart';
 
 void main() async {
   await Env.i.load();
-  runApp(const FifaWorldApp());
+  runApp(FifaWorldApp());
 }
