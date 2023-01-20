@@ -32,7 +32,7 @@ class FifaWorldApp extends StatelessWidget {
         routes: {
           '/': (_) => const SplashRoute(),
           '/auth/login': (_) => const LoginRoute(),
-          '/auth/register': (_) => RegisterRoute(),
+          '/auth/register': (_) => const RegisterRoute(),
           '/home': (_) => const HomeRoute(),
         },
       ),

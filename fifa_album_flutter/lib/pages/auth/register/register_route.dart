@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 
 class RegisterRoute extends FlutterGetItPageRoute {
+  const RegisterRoute({super.key});
+
   @override
   List<Bind<Object>> get bindings => [
         Bind.lazySingleton<RegisterPresenter>(

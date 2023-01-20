@@ -16,13 +16,13 @@ abstract class RegisterViewImpl extends State<RegisterPage>
   @override
   void registerErro([String? message]) {
     hideLoader();
-    showError(message ?? 'Erro ao registrar usuário');
+    showError(message ?? 'Erro ao registrar usuário!');
   }
 
   @override
   void registerSucess([String? message]) {
     hideLoader();
-    showSucess(message ?? 'Usuário cadastrado com sucesso');
+    showSucess(message ?? 'Usuário cadastrado com sucesso!');
     Navigator.of(context).pop();
   }
 }
