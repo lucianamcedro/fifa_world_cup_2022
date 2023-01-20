@@ -10,15 +10,17 @@ class Button extends StatelessWidget {
   final double? height;
   final VoidCallback? onPressed;
   final bool outline;
-  const Button(
-      {super.key,
-      required this.style,
-      required this.labelStyle,
-      required this.label,
-      this.width,
-      this.height,
-      this.onPressed,
-      this.outline = false});
+
+  const Button({
+    super.key,
+    required this.style,
+    required this.labelStyle,
+    required this.label,
+    this.width,
+    this.height,
+    this.onPressed,
+    this.outline = false,
+  });
 
   Button.primary({
     super.key,
@@ -29,6 +31,7 @@ class Button extends StatelessWidget {
   })  : style = ButtonStyles.i.primaryButton,
         labelStyle = TextStyles.i.textSecondaryFontExtraBold,
         outline = false;
+
   @override
   Widget build(BuildContext context) {
     final labelText = Text(

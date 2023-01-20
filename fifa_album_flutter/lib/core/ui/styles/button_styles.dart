@@ -21,7 +21,6 @@ class ButtonStyles {
       ));
 
   ButtonStyle get yellowOutlinedButton => OutlinedButton.styleFrom(
-      backgroundColor: ColorsApp.i.yellow,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
@@ -41,7 +40,6 @@ class ButtonStyles {
       ));
 
   ButtonStyle get primaryOutlinedButton => OutlinedButton.styleFrom(
-      backgroundColor: ColorsApp.i.yellow,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
