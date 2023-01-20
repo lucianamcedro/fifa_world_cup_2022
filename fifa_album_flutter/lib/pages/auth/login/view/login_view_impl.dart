@@ -10,7 +10,7 @@ abstract class LoginViewImpl extends State<LoginPage>
     implements LoginView {
   @override
   void initState() {
-    widget.loginPresenter.view = this;
+    widget.presenter.view = this;
     super.initState();
   }
 

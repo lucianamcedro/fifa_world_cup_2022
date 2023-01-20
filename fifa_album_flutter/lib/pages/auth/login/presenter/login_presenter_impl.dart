@@ -10,7 +10,9 @@ class LoginPresenterImpl implements LoginPresenter {
   final LoginService loginService;
   late final LoginView _view;
 
-  LoginPresenterImpl({required this.loginService});
+  LoginPresenterImpl({
+    required this.loginService,
+  });
 
   @override
   Future<void> login(String email, String password) async {

@@ -20,6 +20,6 @@ class LoginRoute extends FlutterGetItPageRoute {
 
   @override
   WidgetBuilder get page => (context) => LoginPage(
-        loginPresenter: context.get(),
+        presenter: context.get(),
       );
 }

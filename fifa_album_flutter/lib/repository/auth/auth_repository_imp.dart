@@ -22,8 +22,9 @@ class AuthRepositoryImp implements AuthRepository {
         'email': email,
         'password': password,
       });
-      // final accessToken = result.data;
-      final accessToken = result.data['access_token'].toString();
+
+      final accessToken = result.data['access_token'];
+
       if (accessToken == null) {
         throw UnauthorizedException();
       }
@@ -34,7 +35,8 @@ class AuthRepositoryImp implements AuthRepository {
       if (e.response?.statusCode == 401) {
         throw UnauthorizedException();
       }
-      throw RepositoryException(message: 'Erro ao realizar login');
+
+      throw RepositoryException(message: 'Erro ao realizar o login');
     }
   }
 
@@ -46,7 +48,10 @@ class AuthRepositoryImp implements AuthRepository {
   @override
   Future<void> register(RegisterUserModel registerModel) async {
     try {
-      await dio.unAuth().post('/api/register', data: registerModel.toMap());
+      await dio.unAuth().post(
+            '/api/register',
+            data: registerModel.toMap(),
+          );
     } on DioError catch (e, s) {
       log('Erro ao registrar usuário', error: e, stackTrace: s);
       throw RepositoryException(message: 'Erro ao registrar usuário');

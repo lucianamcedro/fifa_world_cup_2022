@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
-  final LoginPresenter loginPresenter;
-  const LoginPage({super.key, required this.loginPresenter});
+  final LoginPresenter presenter;
+
+  const LoginPage({super.key, required this.presenter});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -45,81 +46,73 @@ class _LoginPageState extends LoginViewImpl {
           child: CustomScrollView(
             slivers: [
               SliverList(
-                delegate: SliverChildListDelegate.fixed(
-                  [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          (MediaQuery.of(context).size.width > 350 ? .30 : .25),
+                delegate: SliverChildListDelegate.fixed([
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        (MediaQuery.of(context).size.width > 350 ? .30 : .25),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Center(
+                      child:
+                          Text('Login', style: context.textstyles.titleWhite),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Center(
-                        child: Text(
-                          'Login',
-                          style: context.textstyles.titleWhite,
-                        ),
-                      ),
+                  ),
+                  TextFormField(
+                    controller: emailEC,
+                    decoration: const InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      label: Text('E-mail'),
                     ),
-                    TextFormField(
-                      controller: emailEC,
-                      decoration: const InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        label: Text('E-mail'),
-                      ),
-                      validator: Validatorless.multiple([
-                        Validatorless.required('Obrigatório'),
-                        Validatorless.email('E-mail inválido'),
-                      ]),
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Obrigatório'),
+                      Validatorless.email('E-mail Inválido'),
+                    ]),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: passwordEC,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      label: Text('Senha'),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Obrigatório'),
+                      Validatorless.min(
+                          6, 'Deve conter no mínimo 6 caracteres'),
+                    ]),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6.0),
+                    child: Text(
+                      'Esqueceu a senha?',
+                      style: context.textstyles.textSecondaryFontMedium
+                          .copyWith(color: context.colors.yellow, fontSize: 14),
                     ),
-                    TextFormField(
-                      obscureText: true,
-                      controller: passwordEC,
-                      decoration: const InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        label: Text('Senha'),
-                      ),
-                      validator: Validatorless.multiple([
-                        Validatorless.required('Obrigatório'),
-                        Validatorless.min(
-                            6, 'Senha deve conter pelo menos 6 caracteres')
-                      ]),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6.0),
-                      child: Text(
-                        'Esqueceu a senha?',
-                        style: context.textstyles.textSecondaryFontMedium
-                            .copyWith(
-                                color: context.colors.yellow, fontSize: 14),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    Button(
-                        onPressed: () {
-                          final formValid =
-                              formKey.currentState?.validate() ?? false;
-
-                          if (formValid) {
-                            showLoader();
-                            widget.loginPresenter
-                                .login(emailEC.text, passwordEC.text);
-                          }
-                        },
-                        width: MediaQuery.of(context).size.width * .9,
-                        style: context.buttonStyle.yellowButton,
-                        labelStyle: context
-                            .textstyles.textSecondaryFontExtraBoldPrimaryColor,
-                        label: 'Entrar'),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Button(
+                      width: MediaQuery.of(context).size.width * .9,
+                      onPressed: () {
+                        final valid = formKey.currentState?.validate() ?? false;
+                        if (valid) {
+                          showLoader();
+                          widget.presenter.login(emailEC.text, passwordEC.text);
+                        }
+                      },
+                      style: context.buttonStyle.yellowButton,
+                      labelStyle: context
+                          .textstyles.textSecondaryFontExtraBoldPrimaryColor,
+                      label: 'Entrar')
+                ]),
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
@@ -127,10 +120,10 @@ class _LoginPageState extends LoginViewImpl {
                   children: [
                     const Spacer(),
                     Text.rich(
-                      style: context.textstyles.textSecondaryFontMedium
-                          .copyWith(color: Colors.white),
                       TextSpan(
-                        text: 'Não possui uma conta? ',
+                        text: 'Não possuí uma conta? ',
+                        style: context.textstyles.textSecondaryFontMedium
+                            .copyWith(color: Colors.white),
                         children: [
                           TextSpan(
                             text: 'Cadastre-se',
@@ -142,10 +135,10 @@ class _LoginPageState extends LoginViewImpl {
                           ),
                         ],
                       ),
-                    ),
+                    )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
