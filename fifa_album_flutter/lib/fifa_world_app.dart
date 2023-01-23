@@ -5,7 +5,9 @@ import 'package:fifa_album_flutter/core/ui/theme/theme_config.dart';
 import 'package:fifa_album_flutter/pages/auth/login/login_route.dart';
 import 'package:fifa_album_flutter/pages/auth/register/register_route.dart';
 import 'package:fifa_album_flutter/pages/home/home_route.dart';
+import 'package:fifa_album_flutter/pages/my_stickers/my_stickers_route.dart';
 import 'package:fifa_album_flutter/pages/splash/splash_route.dart';
+import 'package:fifa_album_flutter/pages/sticker_detail/sticker_detail_route.dart';
 import 'package:fifa_album_flutter/repository/auth/auth_repository..dart';
 import 'package:fifa_album_flutter/repository/auth/auth_repository_imp.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,8 @@ class FifaWorldApp extends StatelessWidget {
           '/auth/login': (_) => const LoginRoute(),
           '/auth/register': (_) => const RegisterRoute(),
           '/home': (_) => const HomeRoute(),
+          '/my-stickers': (_) => const MyStickersRoute(),
+          '/sticker-detail': (_) => const StickerDetailRoute(),
         },
       ),
     );
