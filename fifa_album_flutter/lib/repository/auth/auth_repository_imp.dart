@@ -23,7 +23,7 @@ class AuthRepositoryImp implements AuthRepository {
         'password': password,
       });
 
-      final accessToken = result.data['access_token'];
+      final accessToken = result.data;
 
       if (accessToken == null) {
         throw UnauthorizedException();
